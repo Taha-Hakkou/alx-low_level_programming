@@ -6,33 +6,30 @@
  */
 int main(void)
 {
-	int i;
-	unsigned long int fa = 1, fb = 2, fa1, fa2, fb1, fb2, l;
+	unsigned long int e = 1, f = 2;
+	unsigned long int i, l = 1000000000;
+	unsigned long int e1, e2, f1, f2;
 
-	l = 1000000000000;
-	printf("%lu", fa);
-	i = 2;
-	while (i <= 98 && fb < l)
+	printf("%lu", e);
+	for (i = 1; i < 91; i++)
 	{
-		printf(", %lu", fb);
-		fb += fa;
-		fa = fb - fa;
-		i++;
+		printf(", %lu", f);
+		f += e;
+		e = f - e;
 	}
-	fa1 = fa / l;
-	fa2 = fa % l;
-	fb1 = fb / l;
-	fb2 = fb % l;
-	while (i <= 98)
+	e1 = (e / l);
+	e2 = (e % l);
+	f1 = (f / l);
+	f2 = (f % l);
+	for (i = 92; i < 99; ++i)
 	{
-		printf(", %lu", fb1 + fb2 / l);
-		printf("%012lu", fb2 % l);
-		fb1 += fa1;
-		fa1 = fb1 - fa1;
-		fb2 += fa2;
-		fa2 = fb2 - fa2;
-		i++;
+		printf(", %lu", f1 + (f2 / l));
+		printf("%lu", f2 % l);
+		f1 = f1 + e1;
+		e1 = f1 - e1;
+		f2 = f2 + e2;
+		e2 = f2 - e2;
 	}
-	putchar('\n');
+	printf("\n");
 	return (0);
 }
