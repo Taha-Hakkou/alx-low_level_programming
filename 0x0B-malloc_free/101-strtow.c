@@ -2,6 +2,31 @@
 #include <stddef.h>
 #include <string.h>
 #include "main.h"
+
+/**
+ * wcount - helper function to count the number of words in a string
+ * @s: string to evaluate
+ * Return: number of words
+ */
+int wcount(char *s)
+{
+	int flag, c, w;
+
+	flag = 0;
+	w = 0;
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
+	return (w);
+}
+
 /**
  * strtow - splits a string into words
  * @str: string
@@ -10,31 +35,42 @@
  */
 char **strtow(char *str)
 {
-	char **words = NULL;
-	char *word;
-	int i, j, k;
+	char **words, *tmp;
+	int i, k = 0, len = 0, wordc, c = 0, start, end;
 
-	if (str != NULL && *str != '\0')
+	while (*(str + len))
+		len++;
+	wordc = wcount(str);
+	if (wordc == 0)
+		return (NULL);
+
+	words = (char **) malloc(sizeof(char *) * (wordc + 1));
+	if (words == NULL)
+		return (NULL);
+
+	for (i = 0; i <= len; i++)
 	{
-		words = malloc(strlen(str));
-		i = 0;
-		k = 0;
-		if (words != NULL)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			while (str[i] != '\0')
+			if (c)
 			{
-				word = NULL;
-				j = 0;
-				while (str[i] != ' ' && str[i] != '\0')
-				{
-					word[j] = str[i];
-					i++;
-					j++;
-				}
-				word[j] = '\0';
-				words[k] = word;
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				words[k] = tmp - c;
+				k++;
+				c = 0;
 			}
 		}
+		else if (c++ == 0)
+			start = i;
 	}
+
+	words[k] = NULL;
+
 	return (words);
 }
