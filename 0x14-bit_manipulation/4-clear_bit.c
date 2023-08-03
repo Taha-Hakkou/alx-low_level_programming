@@ -8,11 +8,8 @@
  */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int m = 1;
-
-	for (; index > 0; index--)
-		m *= 2;
-	m = ULONG_MAX - m;
-	*n = *n & m;
-	return (1); /* return */
+	if (index > 63)
+		return (-1);
+	*n = (~(1UL << index) & *n);
+	return (1);
 }
