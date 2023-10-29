@@ -1,0 +1,16 @@
+$ ltrace ./crackme2
+
+1. it searches for an environment variable with name: "jennieandjayloveasm="
+2. it hashes its value using <openssl/md5.h> library
+3. it compares the hash code to "e99a18c428cb38d5f260853678922e03"
+
+password:
+
+Create an environment variable with:
+	name: "jennieandjayloveasm"
+	value: original (cracked) value of the hash code "e99a18c428cb38d5f260853678922e03"
+		which is "abc123"
+
+Solution:
+
+export jennieandjayloveasm=abc123

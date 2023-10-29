@@ -1,0 +1,289 @@
+root@029fee8dda29:~# gdb ./crackme2 
+GNU gdb (Ubuntu 9.2-0ubuntu1~20.04.1) 9.2
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./crackme2...
+(No debugging symbols found in ./crackme2)
+(gdb) b main
+Breakpoint 1 at 0x40087a
+(gdb) r
+Starting program: /root/crackme2 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, 0x000000000040087a in main ()
+(gdb) set disasassemby-flavor intel
+No symbol "disasassemby" in current context.
+(gdb) set disassemby-flavor intel
+No symbol "disassemby" in current context.
+(gdb) set disassembly-flavor intel
+(gdb) disas main
+Dump of assembler code for function main:
+   0x0000000000400876 <+0>:	push   rbp
+   0x0000000000400877 <+1>:	mov    rbp,rsp
+=> 0x000000000040087a <+4>:	sub    rsp,0xd0
+   0x0000000000400881 <+11>:	mov    DWORD PTR [rbp-0xb4],edi
+   0x0000000000400887 <+17>:	mov    QWORD PTR [rbp-0xc0],rsi
+   0x000000000040088e <+24>:	mov    QWORD PTR [rbp-0xc8],rdx
+   0x0000000000400895 <+31>:	mov    rax,QWORD PTR fs:0x28
+   0x000000000040089e <+40>:	mov    QWORD PTR [rbp-0x8],rax
+   0x00000000004008a2 <+44>:	xor    eax,eax
+   0x00000000004008a4 <+46>:	mov    QWORD PTR [rbp-0x30],0x0
+   0x00000000004008ac <+54>:	mov    QWORD PTR [rbp-0x28],0x0
+   0x00000000004008b4 <+62>:	mov    QWORD PTR [rbp-0x20],0x0
+   0x00000000004008bc <+70>:	mov    QWORD PTR [rbp-0x18],0x0
+   0x00000000004008c4 <+78>:	mov    BYTE PTR [rbp-0x10],0x0
+   0x00000000004008c8 <+82>:	mov    QWORD PTR [rbp-0xa8],0x0
+   0x00000000004008d3 <+93>:	cmp    DWORD PTR [rbp-0xb4],0x1
+   0x00000000004008da <+100>:	je     0x40092b <main+181>
+   0x00000000004008dc <+102>:	mov    edi,0x400ae8
+   0x00000000004008e1 <+107>:	call   0x4006f0 <puts@plt>
+   0x00000000004008e6 <+112>:	mov    eax,0x1
+   0x00000000004008eb <+117>:	jmp    0x400a3b <main+453>
+   0x00000000004008f0 <+122>:	mov    rax,QWORD PTR [rbp-0xc8]
+--Type <RET> for more, q to quit, c to continue without paging--c
+   0x00000000004008f7 <+129>:	mov    rax,QWORD PTR [rax]
+   0x00000000004008fa <+132>:	mov    edx,0x14
+   0x00000000004008ff <+137>:	mov    esi,0x400af6
+   0x0000000000400904 <+142>:	mov    rdi,rax
+   0x0000000000400907 <+145>:	call   0x400700 <strncmp@plt>
+   0x000000000040090c <+150>:	test   eax,eax
+   0x000000000040090e <+152>:	jne    0x400923 <main+173>
+   0x0000000000400910 <+154>:	mov    rax,QWORD PTR [rbp-0xc8]
+   0x0000000000400917 <+161>:	mov    rax,QWORD PTR [rax]
+   0x000000000040091a <+164>:	mov    QWORD PTR [rbp-0xa8],rax
+   0x0000000000400921 <+171>:	jmp    0x40093a <main+196>
+   0x0000000000400923 <+173>:	add    QWORD PTR [rbp-0xc8],0x8
+   0x000000000040092b <+181>:	mov    rax,QWORD PTR [rbp-0xc8]
+   0x0000000000400932 <+188>:	mov    rax,QWORD PTR [rax]
+   0x0000000000400935 <+191>:	test   rax,rax
+   0x0000000000400938 <+194>:	jne    0x4008f0 <main+122>
+   0x000000000040093a <+196>:	cmp    QWORD PTR [rbp-0xa8],0x0
+   0x0000000000400942 <+204>:	jne    0x400958 <main+226>
+   0x0000000000400944 <+206>:	mov    edi,0x400ae8
+   0x0000000000400949 <+211>:	call   0x4006f0 <puts@plt>
+   0x000000000040094e <+216>:	mov    eax,0x1
+   0x0000000000400953 <+221>:	jmp    0x400a3b <main+453>
+   0x0000000000400958 <+226>:	add    QWORD PTR [rbp-0xa8],0x14
+   0x0000000000400960 <+234>:	lea    rax,[rbp-0xa0]
+   0x0000000000400967 <+241>:	mov    rdi,rax
+   0x000000000040096a <+244>:	call   0x4006d0 <MD5_Init@plt>
+   0x000000000040096f <+249>:	mov    rax,QWORD PTR [rbp-0xa8]
+   0x0000000000400976 <+256>:	mov    rdi,rax
+   0x0000000000400979 <+259>:	call   0x400720 <strlen@plt>
+   0x000000000040097e <+264>:	mov    rdx,rax
+   0x0000000000400981 <+267>:	mov    rcx,QWORD PTR [rbp-0xa8]
+   0x0000000000400988 <+274>:	lea    rax,[rbp-0xa0]
+   0x000000000040098f <+281>:	mov    rsi,rcx
+   0x0000000000400992 <+284>:	mov    rdi,rax
+   0x0000000000400995 <+287>:	call   0x4006e0 <MD5_Update@plt>
+   0x000000000040099a <+292>:	lea    rdx,[rbp-0xa0]
+   0x00000000004009a1 <+299>:	lea    rax,[rbp-0x40]
+   0x00000000004009a5 <+303>:	mov    rsi,rdx
+   0x00000000004009a8 <+306>:	mov    rdi,rax
+   0x00000000004009ab <+309>:	call   0x400740 <MD5_Final@plt>
+   0x00000000004009b0 <+314>:	mov    DWORD PTR [rbp-0xac],0x0
+   0x00000000004009ba <+324>:	jmp    0x4009f9 <main+387>
+   0x00000000004009bc <+326>:	mov    eax,DWORD PTR [rbp-0xac]
+   0x00000000004009c2 <+332>:	cdqe   
+   0x00000000004009c4 <+334>:	movzx  eax,BYTE PTR [rbp+rax*1-0x40]
+   0x00000000004009c9 <+339>:	movzx  eax,al
+   0x00000000004009cc <+342>:	mov    edx,DWORD PTR [rbp-0xac]
+   0x00000000004009d2 <+348>:	add    edx,edx
+   0x00000000004009d4 <+350>:	lea    rcx,[rbp-0x30]
+   0x00000000004009d8 <+354>:	movsxd rdx,edx
+   0x00000000004009db <+357>:	add    rcx,rdx
+   0x00000000004009de <+360>:	mov    edx,eax
+   0x00000000004009e0 <+362>:	mov    esi,0x400b0b
+   0x00000000004009e5 <+367>:	mov    rdi,rcx
+   0x00000000004009e8 <+370>:	mov    eax,0x0
+   0x00000000004009ed <+375>:	call   0x400730 <sprintf@plt>
+   0x00000000004009f2 <+380>:	add    DWORD PTR [rbp-0xac],0x1
+   0x00000000004009f9 <+387>:	cmp    DWORD PTR [rbp-0xac],0xf
+   0x0000000000400a00 <+394>:	jle    0x4009bc <main+326>
+   0x0000000000400a02 <+396>:	mov    BYTE PTR [rbp-0x10],0x0
+   0x0000000000400a06 <+400>:	lea    rax,[rbp-0x30]
+   0x0000000000400a0a <+404>:	mov    rsi,rax
+   0x0000000000400a0d <+407>:	mov    edi,0x400b10
+   0x0000000000400a12 <+412>:	call   0x400760 <strcmp@plt>
+   0x0000000000400a17 <+417>:	test   eax,eax
+   0x0000000000400a19 <+419>:	jne    0x400a2c <main+438>
+   0x0000000000400a1b <+421>:	mov    edi,0x400b31
+   0x0000000000400a20 <+426>:	call   0x4006f0 <puts@plt>
+   0x0000000000400a25 <+431>:	mov    eax,0x0
+   0x0000000000400a2a <+436>:	jmp    0x400a3b <main+453>
+   0x0000000000400a2c <+438>:	mov    edi,0x400ae8
+   0x0000000000400a31 <+443>:	call   0x4006f0 <puts@plt>
+   0x0000000000400a36 <+448>:	mov    eax,0x1
+   0x0000000000400a3b <+453>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x0000000000400a3f <+457>:	xor    rcx,QWORD
+root@029fee8dda29:~# ltrace ./crackme2 
+__libc_start_main(0x400876, 1, 0x7ffff75505d8, 0x400a60 <unfinished ...>
+strncmp("HOSTNAME=029fee8dda29", "jennieandjayloveasm=", 20) = -34
+strncmp("LANGUAGE=en_US:en", "jennieandjayloveasm=", 20) = -30
+strncmp("PWD=/root", "jennieandjayloveasm=", 20) = -26
+strncmp("TZ=America/Los_Angeles", "jennieandjayloveasm=", 20) = -22
+strncmp("HOME=/root", "jennieandjayloveasm=", 20) = -34
+strncmp("LANG=en_US.UTF-8", "jennieandjayloveasm=", 20) = -30
+strncmp("LS_COLORS=rs=0:di=01;34:ln=01;36"..., "jennieandjayloveasm=", 20) = -30
+strncmp("LESSCLOSE=/usr/bin/lesspipe %s %"..., "jennieandjayloveasm=", 20) = -30
+strncmp("TERM=xterm", "jennieandjayloveasm=", 20) = -22
+strncmp("LESSOPEN=| /usr/bin/lesspipe %s", "jennieandjayloveasm=", 20) = -30
+strncmp("SHLVL=1", "jennieandjayloveasm=", 20)   = -23
+strncmp("LC_ALL=en_US.UTF-8", "jennieandjayloveasm=", 20) = -30
+strncmp("PATH=/usr/local/sbin:/usr/local/"..., "jennieandjayloveasm=", 20) = -26
+strncmp("_=/usr/bin/ltrace", "jennieandjayloveasm=", 20) = -11
+strncmp("OLDPWD=/", "jennieandjayloveasm=", 20)  = -27
+puts("Access Denied"Access Denied
+)                            = 14
++++ exited (status 1) +++
+root@029fee8dda29:~# ./crackme2 jennieandjayloveasm=
+Access Denied
+root@029fee8dda29:~# ./crackme2
+Access Denied
+root@029fee8dda29:~# ./crackme2 jennieandjayloveasm=1
+Access Denied
+root@029fee8dda29:~# ./crackme2 jennieandjayloveasm=abc123
+Access Denied
+root@029fee8dda29:~# setenv jennieandjayloveasm hi
+bash: setenv: command not found
+root@029fee8dda29:~# export jennieandjayloveasm=hi
+root@029fee8dda29:~# ./crackme2
+Access Denied
+root@029fee8dda29:~# printenv
+HOSTNAME=029fee8dda29
+LANGUAGE=en_US:en
+PWD=/root
+TZ=America/Los_Angeles
+HOME=/root
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+jennieandjayloveasm=hi
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm
+LESSOPEN=| /usr/bin/lesspipe %s
+SHLVL=1
+LC_ALL=en_US.UTF-8
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+OLDPWD=/
+_=/usr/bin/printenv
+root@029fee8dda29:~# unset jennieandjayloveasm
+root@029fee8dda29:~# printenv
+HOSTNAME=029fee8dda29
+LANGUAGE=en_US:en
+PWD=/root
+TZ=America/Los_Angeles
+HOME=/root
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm
+LESSOPEN=| /usr/bin/lesspipe %s
+SHLVL=1
+LC_ALL=en_US.UTF-8
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+OLDPWD=/
+_=/usr/bin/printenv
+root@029fee8dda29:~# export jennieandjayloveasm=hi
+root@029fee8dda29:~# ltrace ./crackme2 
+__libc_start_main(0x400876, 1, 0x7fff81bc75b8, 0x400a60 <unfinished ...>
+strncmp("HOSTNAME=029fee8dda29", "jennieandjayloveasm=", 20) = -34
+strncmp("LANGUAGE=en_US:en", "jennieandjayloveasm=", 20) = -30
+strncmp("PWD=/root", "jennieandjayloveasm=", 20) = -26
+strncmp("TZ=America/Los_Angeles", "jennieandjayloveasm=", 20) = -22
+strncmp("HOME=/root", "jennieandjayloveasm=", 20) = -34
+strncmp("LANG=en_US.UTF-8", "jennieandjayloveasm=", 20) = -30
+strncmp("LS_COLORS=rs=0:di=01;34:ln=01;36"..., "jennieandjayloveasm=", 20) = -30
+strncmp("jennieandjayloveasm=hi", "jennieandjayloveasm=", 20) = 0
+MD5_Init(0x7fff81bc7420, 0x400af6, 20, 61)       = 1
+strlen("hi")                                     = 2
+MD5_Update(0x7fff81bc7420, 0x7fff81bc8f25, 2, 0x7fff81bc8f25) = 1
+MD5_Final(0x7fff81bc7480, 0x7fff81bc7420, 0x7fff81bc7420, 0x6968) = 1
+sprintf("49", "%02x", 0x49)                      = 2
+sprintf("f6", "%02x", 0xf6)                      = 2
+sprintf("8a", "%02x", 0x8a)                      = 2
+sprintf("5c", "%02x", 0x5c)                      = 2
+sprintf("84", "%02x", 0x84)                      = 2
+sprintf("93", "%02x", 0x93)                      = 2
+sprintf("ec", "%02x", 0xec)                      = 2
+sprintf("2c", "%02x", 0x2c)                      = 2
+sprintf("0b", "%02x", 0xb)                       = 2
+sprintf("f4", "%02x", 0xf4)                      = 2
+sprintf("89", "%02x", 0x89)                      = 2
+sprintf("82", "%02x", 0x82)                      = 2
+sprintf("1c", "%02x", 0x1c)                      = 2
+sprintf("21", "%02x", 0x21)                      = 2
+sprintf("fc", "%02x", 0xfc)                      = 2
+sprintf("3b", "%02x", 0x3b)                      = 2
+strcmp("e99a18c428cb38d5f260853678922e03"..., "49f68a5c8493ec2c0bf489821c21fc3b"...) = 49
+puts("Access Denied"Access Denied
+)                            = 14
++++ exited (status 1) +++
+root@029fee8dda29:~# ./crackme2 jennieandjayloveasm=abc123
+Access Denied
+root@029fee8dda29:~# unset jennieandjayloveasm
+root@029fee8dda29:~# printenv
+HOSTNAME=029fee8dda29
+LANGUAGE=en_US:en
+PWD=/root
+TZ=America/Los_Angeles
+HOME=/root
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm
+LESSOPEN=| /usr/bin/lesspipe %s
+SHLVL=1
+LC_ALL=en_US.UTF-8
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+OLDPWD=/
+_=/usr/bin/printenv
+root@029fee8dda29:~# export jennieandjayloveasm=abc123
+root@029fee8dda29:~# ltrace ./crackme2 
+__libc_start_main(0x400876, 1, 0x7fff48d6e058, 0x400a60 <unfinished ...>
+strncmp("HOSTNAME=029fee8dda29", "jennieandjayloveasm=", 20) = -34
+strncmp("LANGUAGE=en_US:en", "jennieandjayloveasm=", 20) = -30
+strncmp("PWD=/root", "jennieandjayloveasm=", 20) = -26
+strncmp("TZ=America/Los_Angeles", "jennieandjayloveasm=", 20) = -22
+strncmp("HOME=/root", "jennieandjayloveasm=", 20) = -34
+strncmp("LANG=en_US.UTF-8", "jennieandjayloveasm=", 20) = -30
+strncmp("LS_COLORS=rs=0:di=01;34:ln=01;36"..., "jennieandjayloveasm=", 20) = -30
+strncmp("jennieandjayloveasm=abc123", "jennieandjayloveasm=", 20) = 0
+MD5_Init(0x7fff48d6dec0, 0x400af6, 20, 61)       = 1
+strlen("abc123")                                 = 6
+MD5_Update(0x7fff48d6dec0, 0x7fff48d6ff21, 6, 0x7fff48d6ff21) = 1
+MD5_Final(0x7fff48d6df20, 0x7fff48d6dec0, 0x7fff48d6dec0, 0x33323163) = 1
+sprintf("e9", "%02x", 0xe9)                      = 2
+sprintf("9a", "%02x", 0x9a)                      = 2
+sprintf("18", "%02x", 0x18)                      = 2
+sprintf("c4", "%02x", 0xc4)                      = 2
+sprintf("28", "%02x", 0x28)                      = 2
+sprintf("cb", "%02x", 0xcb)                      = 2
+sprintf("38", "%02x", 0x38)                      = 2
+sprintf("d5", "%02x", 0xd5)                      = 2
+sprintf("f2", "%02x", 0xf2)                      = 2
+sprintf("60", "%02x", 0x60)                      = 2
+sprintf("85", "%02x", 0x85)                      = 2
+sprintf("36", "%02x", 0x36)                      = 2
+sprintf("78", "%02x", 0x78)                      = 2
+sprintf("92", "%02x", 0x92)                      = 2
+sprintf("2e", "%02x", 0x2e)                      = 2
+sprintf("03", "%02x", 0x3)                       = 2
+strcmp("e99a18c428cb38d5f260853678922e03"..., "e99a18c428cb38d5f260853678922e03"...) = 0
+puts("Access Granted"Access Granted
+)                           = 15
++++ exited (status 0) +++
+root@029fee8dda29:~# ./crackme2 jennieandjayloveasm=abc123
+Access Denied
+root@029fee8dda29:~# client_loop: send disconnect: Broken pipe
