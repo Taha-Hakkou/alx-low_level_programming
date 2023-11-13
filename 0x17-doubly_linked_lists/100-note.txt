@@ -1,0 +1,11 @@
+$ cat crackme4
+-> mix of python code & some garbage (detect it as python compiled file .pyc)
+$ mv crackme4 crackme4.pyc
+-> try to import the module:
+$ python3
+>>> import crackme4
+-> gives a bad magic number error: b'\xee\x0c\r\n'
+-> after searching about the magic number, it appeares that corresponding python interpreter version is: 3.4
+>>> import crackme4 #on a ubuntu 14.04lts VM, it has python3.4
+>>> print(dir(crackme4)) #print the names
+>>> print(crackme4.ok) #'ok' variable detected as containing the desired password

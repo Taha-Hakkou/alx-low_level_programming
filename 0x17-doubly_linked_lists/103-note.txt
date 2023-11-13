@@ -1,0 +1,13 @@
+* the usecase of the 'keygen' w/ the 'crackme5' program indicates that the keygen is a part of the program,
+	'crackme5' take a username, generates the password & compare it to the given password
+
+* since the program generates the same password for same user each time,
+	& with the same length (6) for all users => the program is a hasher
+
+* using debugging techniques (gdb, ltrace, ...):
+	the program uses 6 different functions (f1, f2, ..., f6) to create & append each of the password characters
+
+* some functions are implemented directly in the main routine,
+	because betty style don't allow more than 5 functions per file
+
+* use reverse engineering to re-implement each function !

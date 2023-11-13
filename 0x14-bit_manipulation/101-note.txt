@@ -1,0 +1,39 @@
+* (gdb) disas main
+
+mov		DWORD PTR [rbp-0x14],edi ;argc
+mov		QWORD PTR [rbp-0x20],rsi ;argv
+cmp		DWORD PTR [rbp-0x14],0x2 ;argc == 2
+je		0x4006b1 <main+60>
+...
+mov    rax,QWORD PTR [rbp-0x20]  ;rax = argv
+add    rax,0x8
+mov    rax,QWORD PTR [rax]		 ;rax = &argv[1] //8 bits = 1 byte
+mov    rdi,rax
+call   0x4005f6 <check_password> ;check_password(argv[1])
+
+* (gdb disas check_password)
+
+mov    QWORD PTR [rbp-0x18],rdi  ;argv[1]
+mov    rax,QWORD PTR [rbp-0x18]
+mov    rdi,rax
+call   0x4004c0 <strlen@plt>	 
+cmp    rax,0x4					 ;strlen(argv[1]) == 4
+je     0x40061b <check_password+37>
+...
+mov    DWORD PTR [rbp-0x4],0x46c6f48	;password
+mov    BYTE PTR [rbp-0x5],0xff
+mov    BYTE PTR [rbp-0x6],0x0
+jmp    0x400668 <check_password+114>
+...									; comapare the letter
+cmp    BYTE PTR [rbp-0x6],0x3	 ; for i in 0..strlen(argv[1])-1
+jbe    0x40062c <check_password+54>		;compare each letter
+mov    eax,0x1
+leave
+ret
+
+_________________________________________
+
+password = 0x46c6f48 =Hol\x04
+\x04 = EOT
+
+
