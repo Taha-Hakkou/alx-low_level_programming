@@ -11,7 +11,7 @@ COMPILER = $(CC)
 %.o: %.c
 	$(COMPILER) -c -o $@ $<
 
-all: $(OBJ) m.h
+all: m.h $(OBJ)
 	$(COMPILER) $(OBJ) -o $(NAME)
 
 clean:
