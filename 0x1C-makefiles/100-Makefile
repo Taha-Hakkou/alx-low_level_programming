@@ -6,10 +6,12 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 
 COMPILER = $(CC)
 
-%.o: %.c
-	$(COMPILER) $(CFLAGS) -c -o $@ $<
+.PHONY: all clean oclean fclean re
 
-all: $(OBJ)
+%.o: %.c
+	$(COMPILER) -c -o $@ $<
+
+all: $(OBJ) m.h
 	$(COMPILER) $(OBJ) -o $(NAME)
 
 clean:
