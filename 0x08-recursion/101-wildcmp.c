@@ -9,27 +9,24 @@
  */
 int wildcmp(char *s1, char *s2)
 {
-	char *str1 = s1, *str2 = s2;
-
-	while (*str1 != '\0' && *str2 != '\0' && *str2 != '*')
-		if (*(str1++) != *(str2++))
+	if (*s1 == '\0')
+	{
+		if (*s2 == '\0')
+			return (1);
+		else if (*s2 == '*')
+			return (wildcmp(s1, s2 + 1));
+		else
 			return (0);
-	if (*str1 == '\0')
-	{
-		while (*str2 != '\0')
-			if (*(str2++) != '*')
-				return (0);
-		return (1);
 	}
-	if (*str2 == '\0')
+	else
 	{
-		if (*str1 == '\0')
-			return (1);
-		return (0);
+		if (*s2 == '\0')
+			return (0);
+		else if (*s2 == '*')
+			return (wildcmp(s1, s2 + 1) || wildcmp(s1 + 1, s2));
+		else if (*s2 == *s1)
+			return (wildcmp(s1 + 1, s2 + 1));
+		else
+			return (0);
 	}
-	do {
-		if (wildcmp(str1, str2 + 1))
-			return (1);
-	} while (*(str1++) != '\0');
-	return (0);
 }
