@@ -19,9 +19,11 @@ int (*get_op_func(char *s))(int a, int b)
 	int i;
 
 	i = 0;
-	while (s != ops[i].op && i < 6)
+	while (ops[i].op)
+	{
+		if (*s == ops[i].op[0] && *(s + 1) == '\0')
+			return (ops[i].f);
 		i++;
-	if (i == 6)
-		return (NULL);
-	return (ops[i].f);
+	}
+	return (NULL);
 }
