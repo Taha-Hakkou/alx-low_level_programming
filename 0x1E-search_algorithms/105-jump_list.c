@@ -13,7 +13,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	int sr, i;
 	listint_t *node, *tmp;
 
-	if (list == NULL)
+	if (list == NULL || size == 0)
 		return (NULL);
 	sr = sqrt(size);
 	tmp = list;

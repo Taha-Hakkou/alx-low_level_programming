@@ -10,7 +10,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *node, *tmp, *xnode;
 
-	if (list == NULL)
+	if (list == NULL || size == 0)
 		return (NULL);
 	node = list;
 	while (node->express && node->express->n <= value)
