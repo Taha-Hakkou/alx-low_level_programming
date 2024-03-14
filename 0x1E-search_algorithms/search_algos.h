@@ -27,9 +27,9 @@ int advanced_binary(int *, size_t, int);
  */
 typedef struct listint_s
 {
-    int n;
-    size_t index;
-    struct listint_s *next;
+	int n;
+	size_t index;
+	struct listint_s *next;
 } listint_t;
 
 listint_t *jump_list(listint_t *, size_t, int);
@@ -48,10 +48,10 @@ listint_t *jump_list(listint_t *, size_t, int);
  */
 typedef struct skiplist_s
 {
-    int n;
-    size_t index;
-    struct skiplist_s *next;
-    struct skiplist_s *express;
+	int n;
+	size_t index;
+	struct skiplist_s *next;
+	struct skiplist_s *express;
 } skiplist_t;
 
 skiplist_t *linear_skip(skiplist_t *, int);
