@@ -10,10 +10,10 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *node, *tmp, *xnode;
 
-	if (list == NULL || size == 0)
+	if (list == NULL)
 		return (NULL);
 	node = list;
-	while (node->express && node->express->n <= value)
+	while (node->express && node->express->n < value)
 	{
 		node = node->express;
 		printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
