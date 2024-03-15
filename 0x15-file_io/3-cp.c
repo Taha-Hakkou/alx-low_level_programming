@@ -24,8 +24,8 @@ void errfile(int ffrom, int fto, char *argv[])
 
 /**
  * main - copies the content of a file to another file
- * @ac: arguments count
- * @av: arguments vector
+ * @argc: arguments count
+ * @argv: arguments vector
  * Return: 0 on Success, exit with error_code on errors
  */
 int main(int argc, char *argv[])
