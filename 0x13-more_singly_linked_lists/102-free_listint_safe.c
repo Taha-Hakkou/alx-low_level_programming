@@ -1,6 +1,7 @@
 #include "lists.h"
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdio.h>
 /**
  * free_listint_safe - frees a listint_t list safely
  * @h: a pointer to a pointer to head of linked list
@@ -15,16 +16,23 @@ size_t free_listint_safe(listint_t **h)
 	sp = fp = node;
 	while (fp && fp->next)
 	{
-		if (sp->next == fp->next->next)
+		sp = sp->next;
+		fp = fp->next->next;
+		if (sp == fp)
 		{
+			fp = node;
+			while (sp->next != fp->next)
+			{
+				sp = sp->next;
+				fp = fp->next;
+			}
 			sp->next = NULL;
 			break;
 		}
-		sp = sp->next;
-		fp = fp->next->next;
 	}
 	while (node)
 	{
+		/*printf("%d\n", node->n);*/
 		sp = node->next;
 		free(node);
 		n++;
