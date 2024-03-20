@@ -8,21 +8,34 @@
 void print_all(const char * const format, ...)
 {
 	va_list ap;
-	int i, j;
-	char *v_types;
-	char *fs = "\%x";
+	int i = 0;
+	char *s;
 
-	v_types = "cifs";
 	va_start(ap, format);
-	i = 0;
-	while (format[i] != '\0')
+	while (format[i])
 	{
-		j = 0;
-		while (format[i] != v_types[j] && j < 3)
-			j++;
-		if (format[i] == v_types[j])
-			printf("%%c", v_types[j], va_arg(ap, int));
-		i++;
+		switch (format[i]) {
+			case 'c':
+				printf("%c", va_arg(ap, int));
+				break;
+			case 'i':
+				printf("%d", va_arg(ap, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(ap, double));
+				break;
+			case 's':
+				s = va_arg(ap, char*);
+				if (s)
+					printf("%s", s);
+				else
+					printf("(nil)");
+				break;
+		}
+		if (format[++i])
+			printf(", ");
+		else
+			printf("\n");
 	}
 	va_end(ap);
 }
