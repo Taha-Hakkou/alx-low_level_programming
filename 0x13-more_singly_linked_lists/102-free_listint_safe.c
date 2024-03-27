@@ -21,18 +21,21 @@ size_t free_listint_safe(listint_t **h)
 		if (sp == fp)
 		{
 			fp = node;
-			while (sp->next != fp->next)
-			{
-				sp = sp->next;
-				fp = fp->next;
-			}
+			if (fp == sp)
+				while (sp->next != node)
+					sp = sp->next;
+			else
+				while (sp->next != fp->next)
+				{
+					sp = sp->next;
+					fp = fp->next;
+				}
 			sp->next = NULL;
 			break;
 		}
 	}
 	while (node)
 	{
-		/*printf("%d\n", node->n);*/
 		sp = node->next;
 		free(node);
 		n++;
